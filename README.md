@@ -1,4 +1,4 @@
-# KLx assessement
+# KLx assessment
 
 This QA Challenge has been developed in Robot Framework, using the library: "SeleniumLibrary" whose versions are the following:
 
