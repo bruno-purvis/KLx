@@ -1,0 +1,738 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 3.2.2 (Python 3.9.0 on win32)" generated="20240322 15:59:08.964" rpa="false">
+<suite id="s1" name="automationExercise" source="C:\Users\Purvis\Desktop\KLx\test scripts\automationExercise.robot">
+<kw name="Run Keywords" library="BuiltIn" type="setup">
+<doc>Executes all the given keywords in a sequence.</doc>
+<arguments>
+<arg>Set Selenium Implicit Wait</arg>
+<arg>2s</arg>
+<arg>AND</arg>
+<arg>Open Browser</arg>
+<arg>browser=${browser}</arg>
+<arg>url=${urlHomePage}</arg>
+<arg>AND</arg>
+<arg>Wait Until Location Is</arg>
+<arg>${urlHomePage}</arg>
+<arg>timeout=5s</arg>
+<arg>AND</arg>
+<arg>Maximize Browser Window</arg>
+</arguments>
+<kw name="Set Selenium Implicit Wait" library="SeleniumLibrary">
+<doc>Sets the implicit wait value used by Selenium.</doc>
+<arguments>
+<arg>2s</arg>
+</arguments>
+<status status="PASS" starttime="20240322 15:59:09.261" endtime="20240322 15:59:09.261"></status>
+</kw>
+<kw name="Open Browser" library="SeleniumLibrary">
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<arguments>
+<arg>browser=${browser}</arg>
+<arg>url=${urlHomePage}</arg>
+</arguments>
+<msg timestamp="20240322 15:59:09.261" level="INFO">Opening browser 'Chrome' to base url 'https://automationexercise.com/'.</msg>
+<status status="PASS" starttime="20240322 15:59:09.261" endtime="20240322 15:59:15.000"></status>
+</kw>
+<kw name="Wait Until Location Is" library="SeleniumLibrary">
+<doc>Waits until the current URL is ``expected``.</doc>
+<arguments>
+<arg>${urlHomePage}</arg>
+<arg>timeout=5s</arg>
+</arguments>
+<status status="PASS" starttime="20240322 15:59:15.001" endtime="20240322 15:59:15.052"></status>
+</kw>
+<kw name="Maximize Browser Window" library="SeleniumLibrary">
+<doc>Maximizes current browser window.</doc>
+<status status="PASS" starttime="20240322 15:59:15.052" endtime="20240322 15:59:15.177"></status>
+</kw>
+<status status="PASS" starttime="20240322 15:59:09.261" endtime="20240322 15:59:15.177"></status>
+</kw>
+<test id="s1-t1" name="Accept_Add_Two_Products_To_Cart_Validate_Sum_Of_Values">
+<kw name="Go to Products page" library="mainMenu">
+<kw name="Click Element" library="SeleniumLibrary">
+<doc>Click the element identified by ``locator``.</doc>
+<arguments>
+<arg>${xpathProductsHyperlink}</arg>
+</arguments>
+<msg timestamp="20240322 15:59:15.185" level="INFO">Clicking element '//a[contains(@href, "products")]'.</msg>
+<status status="PASS" starttime="20240322 15:59:15.185" endtime="20240322 15:59:18.357"></status>
+</kw>
+<status status="PASS" starttime="20240322 15:59:15.177" endtime="20240322 15:59:18.357"></status>
+</kw>
+<kw name="Search bar should be visible" library="productsPage">
+<kw name="Wait Until Element Is Visible" library="SeleniumLibrary">
+<doc>Waits until the element ``locator`` is visible.</doc>
+<arguments>
+<arg>${xpathSearchBar}</arg>
+<arg>${timeout}</arg>
+</arguments>
+<status status="PASS" starttime="20240322 15:59:18.360" endtime="20240322 15:59:18.400"></status>
+</kw>
+<status status="PASS" starttime="20240322 15:59:18.358" endtime="20240322 15:59:18.400"></status>
+</kw>
+<kw name="Search product and validate if it is visible" library="productsPage">
+<arguments>
+<arg>${menTshirt}</arg>
+</arguments>
+<kw name="${productName} IN [ @{listOfProductsNames} ]" type="for">
+<kw name="${productName} = Men Tshirt" type="foritem">
+<kw name="Search product" library="productsPage">
+<arguments>
+<arg>${productName}</arg>
+</arguments>
+<kw name="Input Text" library="SeleniumLibrary">
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<arguments>
+<arg>${xpathSearchBar}</arg>
+<arg>${productName}</arg>
+</arguments>
+<msg timestamp="20240322 15:59:18.400" level="INFO">Typing text 'Men Tshirt' into text field '//input[@id="search_product"]'.</msg>
+<status status="PASS" starttime="20240322 15:59:18.400" endtime="20240322 15:59:18.589"></status>
+</kw>
+<kw name="Click Button" library="SeleniumLibrary">
+<doc>Clicks the button identified by ``locator``.</doc>
+<arguments>
+<arg>${xpathSubmitSearchButton}</arg>
+</arguments>
+<msg timestamp="20240322 15:59:18.590" level="INFO">Clicking button '//button[@id="submit_search"]'.</msg>
+<status status="PASS" starttime="20240322 15:59:18.590" endtime="20240322 15:59:19.583"></status>
+</kw>
+<status status="PASS" starttime="20240322 15:59:18.400" endtime="20240322 15:59:19.584"></status>
+</kw>
+<kw name="Verify if product is visible" library="productsPage">
+<arguments>
+<arg>${productName}</arg>
+</arguments>
+<kw name="Replace String" library="String">
+<doc>Replaces ``search_for`` in the given ``string`` with ``replace_with``.</doc>
+<arguments>
+<arg>${xpathProductName}</arg>
+<arg>nameOfTheProduct</arg>
+<arg>${productName}</arg>
+</arguments>
+<assign>
+<var>${xpathItemName}</var>
+</assign>
+<msg timestamp="20240322 15:59:19.586" level="INFO">${xpathItemName} = //div[contains(@class, "single-products")]//descendant::p[text()="Men Tshirt"]</msg>
+<status status="PASS" starttime="20240322 15:59:19.585" endtime="20240322 15:59:19.586"></status>
+</kw>
+<kw name="Element Should Be Visible" library="SeleniumLibrary">
+<doc>Verifies that the element identified by ``locator`` is visible.</doc>
+<arguments>
+<arg>${xpathItemName}</arg>
+</arguments>
+<msg timestamp="20240322 15:59:19.628" level="INFO">Element '//div[contains(@class, "single-products")]//descendant::p[text()="Men Tshirt"]' is displayed.</msg>
+<status status="PASS" starttime="20240322 15:59:19.587" endtime="20240322 15:59:19.628"></status>
+</kw>
+<status status="PASS" starttime="20240322 15:59:19.584" endtime="20240322 15:59:19.628"></status>
+</kw>
+<status status="PASS" starttime="20240322 15:59:18.400" endtime="20240322 15:59:19.628"></status>
+</kw>
+<status status="PASS" starttime="20240322 15:59:18.400" endtime="20240322 15:59:19.628"></status>
+</kw>
+<status status="PASS" starttime="20240322 15:59:18.400" endtime="20240322 15:59:19.628"></status>
+</kw>
+<kw name="Add product to cart" library="productsPage">
+<arguments>
+<arg>${menTshirt}</arg>
+</arguments>
+<kw name="Replace String" library="String">
+<doc>Replaces ``search_for`` in the given ``string`` with ``replace_with``.</doc>
+<arguments>
+<arg>${xpathAddToCartHyperlink}</arg>
+<arg>nameOfTheProduct</arg>
+<arg>${productName}</arg>
+</arguments>
+<assign>
+<var>${xpathAddToCart}</var>
+</assign>
+<msg timestamp="20240322 15:59:19.631" level="INFO">${xpathAddToCart} = //div[contains(@class, "single-products")]//descendant::p[text()="Men Tshirt"]/ancestor::div[contains(@class, "single-products")]/descendant::a</msg>
+<status status="PASS" starttime="20240322 15:59:19.630" endtime="20240322 15:59:19.631"></status>
+</kw>
+<kw name="Click Element" library="SeleniumLibrary">
+<doc>Click the element identified by ``locator``.</doc>
+<arguments>
+<arg>${xpathAddToCart}</arg>
+</arguments>
+<msg timestamp="20240322 15:59:19.632" level="INFO">Clicking element '//div[contains(@class, "single-products")]//descendant::p[text()="Men Tshirt"]/ancestor::div[contains(@class, "single-products")]/descendant::a'.</msg>
+<status status="PASS" starttime="20240322 15:59:19.632" endtime="20240322 15:59:19.865"></status>
+</kw>
+<status status="PASS" starttime="20240322 15:59:19.629" endtime="20240322 15:59:19.865"></status>
+</kw>
+<kw name="Click Continue Shopping" library="productsPage">
+<kw name="Wait Until Element Is Visible" library="SeleniumLibrary">
+<doc>Waits until the element ``locator`` is visible.</doc>
+<arguments>
+<arg>${xpathContinueShoppingButton}</arg>
+</arguments>
+<status status="PASS" starttime="20240322 15:59:19.865" endtime="20240322 15:59:20.145"></status>
+</kw>
+<kw name="Click Button" library="SeleniumLibrary">
+<doc>Clicks the button identified by ``locator``.</doc>
+<arguments>
+<arg>${xpathContinueShoppingButton}</arg>
+</arguments>
+<msg timestamp="20240322 15:59:20.145" level="INFO">Clicking button '//button[text()="Continue Shopping"]'.</msg>
+<status status="PASS" starttime="20240322 15:59:20.145" endtime="20240322 15:59:20.242"></status>
+</kw>
+<status status="PASS" starttime="20240322 15:59:19.865" endtime="20240322 15:59:20.242"></status>
+</kw>
+<kw name="Search product and validate if it is visible" library="productsPage">
+<arguments>
+<arg>${blueTop}</arg>
+</arguments>
+<kw name="${productName} IN [ @{listOfProductsNames} ]" type="for">
+<kw name="${productName} = Blue Top" type="foritem">
+<kw name="Search product" library="productsPage">
+<arguments>
+<arg>${productName}</arg>
+</arguments>
+<kw name="Input Text" library="SeleniumLibrary">
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<arguments>
+<arg>${xpathSearchBar}</arg>
+<arg>${productName}</arg>
+</arguments>
+<msg timestamp="20240322 15:59:20.242" level="INFO">Typing text 'Blue Top' into text field '//input[@id="search_product"]'.</msg>
+<status status="PASS" starttime="20240322 15:59:20.242" endtime="20240322 15:59:20.470"></status>
+</kw>
+<kw name="Click Button" library="SeleniumLibrary">
+<doc>Clicks the button identified by ``locator``.</doc>
+<arguments>
+<arg>${xpathSubmitSearchButton}</arg>
+</arguments>
+<msg timestamp="20240322 15:59:20.471" level="INFO">Clicking button '//button[@id="submit_search"]'.</msg>
+<status status="PASS" starttime="20240322 15:59:20.470" endtime="20240322 15:59:21.667"></status>
+</kw>
+<status status="PASS" starttime="20240322 15:59:20.242" endtime="20240322 15:59:21.667"></status>
+</kw>
+<kw name="Verify if product is visible" library="productsPage">
+<arguments>
+<arg>${productName}</arg>
+</arguments>
+<kw name="Replace String" library="String">
+<doc>Replaces ``search_for`` in the given ``string`` with ``replace_with``.</doc>
+<arguments>
+<arg>${xpathProductName}</arg>
+<arg>nameOfTheProduct</arg>
+<arg>${productName}</arg>
+</arguments>
+<assign>
+<var>${xpathItemName}</var>
+</assign>
+<msg timestamp="20240322 15:59:21.667" level="INFO">${xpathItemName} = //div[contains(@class, "single-products")]//descendant::p[text()="Blue Top"]</msg>
+<status status="PASS" starttime="20240322 15:59:21.667" endtime="20240322 15:59:21.667"></status>
+</kw>
+<kw name="Element Should Be Visible" library="SeleniumLibrary">
+<doc>Verifies that the element identified by ``locator`` is visible.</doc>
+<arguments>
+<arg>${xpathItemName}</arg>
+</arguments>
+<msg timestamp="20240322 15:59:21.717" level="INFO">Element '//div[contains(@class, "single-products")]//descendant::p[text()="Blue Top"]' is displayed.</msg>
+<status status="PASS" starttime="20240322 15:59:21.667" endtime="20240322 15:59:21.717"></status>
+</kw>
+<status status="PASS" starttime="20240322 15:59:21.667" endtime="20240322 15:59:21.717"></status>
+</kw>
+<status status="PASS" starttime="20240322 15:59:20.242" endtime="20240322 15:59:21.717"></status>
+</kw>
+<status status="PASS" starttime="20240322 15:59:20.242" endtime="20240322 15:59:21.717"></status>
+</kw>
+<status status="PASS" starttime="20240322 15:59:20.242" endtime="20240322 15:59:21.717"></status>
+</kw>
+<kw name="Add product to cart" library="productsPage">
+<arguments>
+<arg>${blueTop}</arg>
+</arguments>
+<kw name="Replace String" library="String">
+<doc>Replaces ``search_for`` in the given ``string`` with ``replace_with``.</doc>
+<arguments>
+<arg>${xpathAddToCartHyperlink}</arg>
+<arg>nameOfTheProduct</arg>
+<arg>${productName}</arg>
+</arguments>
+<assign>
+<var>${xpathAddToCart}</var>
+</assign>
+<msg timestamp="20240322 15:59:21.717" level="INFO">${xpathAddToCart} = //div[contains(@class, "single-products")]//descendant::p[text()="Blue Top"]/ancestor::div[contains(@class, "single-products")]/descendant::a</msg>
+<status status="PASS" starttime="20240322 15:59:21.717" endtime="20240322 15:59:21.717"></status>
+</kw>
+<kw name="Click Element" library="SeleniumLibrary">
+<doc>Click the element identified by ``locator``.</doc>
+<arguments>
+<arg>${xpathAddToCart}</arg>
+</arguments>
+<msg timestamp="20240322 15:59:21.717" level="INFO">Clicking element '//div[contains(@class, "single-products")]//descendant::p[text()="Blue Top"]/ancestor::div[contains(@class, "single-products")]/descendant::a'.</msg>
+<status status="PASS" starttime="20240322 15:59:21.717" endtime="20240322 15:59:21.919"></status>
+</kw>
+<status status="PASS" starttime="20240322 15:59:21.717" endtime="20240322 15:59:21.920"></status>
+</kw>
+<kw name="Click View Cart" library="productsPage">
+<kw name="Wait Until Element Is Visible" library="SeleniumLibrary">
+<doc>Waits until the element ``locator`` is visible.</doc>
+<arguments>
+<arg>${xpathViewCartHyperlink}</arg>
+</arguments>
+<status status="PASS" starttime="20240322 15:59:21.921" endtime="20240322 15:59:22.202"></status>
+</kw>
+<kw name="Click Element" library="SeleniumLibrary">
+<doc>Click the element identified by ``locator``.</doc>
+<arguments>
+<arg>${xpathViewCartHyperlink}</arg>
+</arguments>
+<msg timestamp="20240322 15:59:22.202" level="INFO">Clicking element '//u[text()="View Cart"]/ancestor::a'.</msg>
+<status status="PASS" starttime="20240322 15:59:22.202" endtime="20240322 15:59:23.117"></status>
+</kw>
+<status status="PASS" starttime="20240322 15:59:21.920" endtime="20240322 15:59:23.118"></status>
+</kw>
+<kw name="Verify that product is visible in cart" library="cartPage">
+<arguments>
+<arg>${menTshirt}</arg>
+<arg>${blueTop}</arg>
+</arguments>
+<kw name="${productName} IN [ @{listOfItems} ]" type="for">
+<kw name="${productName} = Men Tshirt" type="foritem">
+<kw name="Replace String" library="String">
+<doc>Replaces ``search_for`` in the given ``string`` with ``replace_with``.</doc>
+<arguments>
+<arg>${xpathNameOfTheProductHyperlink}</arg>
+<arg>nameOfTheProduct</arg>
+<arg>${productName}</arg>
+</arguments>
+<assign>
+<var>${xpathProductName}</var>
+</assign>
+<msg timestamp="20240322 15:59:23.121" level="INFO">${xpathProductName} = //a[text()="Men Tshirt"]</msg>
+<status status="PASS" starttime="20240322 15:59:23.120" endtime="20240322 15:59:23.121"></status>
+</kw>
+<kw name="Element Should Be Visible" library="SeleniumLibrary">
+<doc>Verifies that the element identified by ``locator`` is visible.</doc>
+<arguments>
+<arg>${xpathProductName}</arg>
+</arguments>
+<msg timestamp="20240322 15:59:23.159" level="INFO">Element '//a[text()="Men Tshirt"]' is displayed.</msg>
+<status status="PASS" starttime="20240322 15:59:23.121" endtime="20240322 15:59:23.159"></status>
+</kw>
+<status status="PASS" starttime="20240322 15:59:23.120" endtime="20240322 15:59:23.159"></status>
+</kw>
+<kw name="${productName} = Blue Top" type="foritem">
+<kw name="Replace String" library="String">
+<doc>Replaces ``search_for`` in the given ``string`` with ``replace_with``.</doc>
+<arguments>
+<arg>${xpathNameOfTheProductHyperlink}</arg>
+<arg>nameOfTheProduct</arg>
+<arg>${productName}</arg>
+</arguments>
+<assign>
+<var>${xpathProductName}</var>
+</assign>
+<msg timestamp="20240322 15:59:23.160" level="INFO">${xpathProductName} = //a[text()="Blue Top"]</msg>
+<status status="PASS" starttime="20240322 15:59:23.159" endtime="20240322 15:59:23.160"></status>
+</kw>
+<kw name="Element Should Be Visible" library="SeleniumLibrary">
+<doc>Verifies that the element identified by ``locator`` is visible.</doc>
+<arguments>
+<arg>${xpathProductName}</arg>
+</arguments>
+<msg timestamp="20240322 15:59:23.187" level="INFO">Element '//a[text()="Blue Top"]' is displayed.</msg>
+<status status="PASS" starttime="20240322 15:59:23.160" endtime="20240322 15:59:23.187"></status>
+</kw>
+<status status="PASS" starttime="20240322 15:59:23.159" endtime="20240322 15:59:23.187"></status>
+</kw>
+<status status="PASS" starttime="20240322 15:59:23.119" endtime="20240322 15:59:23.187"></status>
+</kw>
+<status status="PASS" starttime="20240322 15:59:23.118" endtime="20240322 15:59:23.187"></status>
+</kw>
+<kw name="Validate the sum of the product values" library="cartPage">
+<doc>After getting a list of all product names in cart, a FOR loop is
+done to iterate over it. In each iteration we get the price of the
+correspondent item and its quantity in cart. The expected sum value
+is then calculated and, at this point, we get the total price value
+of the product and validate it against the expected value previously
+calculated.</doc>
+<kw name="Get all products names in cart" library="cartPage">
+<assign>
+<var>@{listOfAllProductsInCart}</var>
+</assign>
+<kw name="Create List" library="BuiltIn">
+<doc>Returns a list containing given items.</doc>
+<assign>
+<var>@{listOfAllProductsInCart}</var>
+</assign>
+<msg timestamp="20240322 15:59:23.187" level="INFO">@{listOfAllProductsInCart} = [ ]</msg>
+<status status="PASS" starttime="20240322 15:59:23.187" endtime="20240322 15:59:23.187"></status>
+</kw>
+<kw name="Get WebElements" library="SeleniumLibrary">
+<doc>Returns a list of WebElement objects matching the ``locator``.</doc>
+<arguments>
+<arg>${xpathNameAllProductsNamesHyperlink}</arg>
+</arguments>
+<assign>
+<var>${listOfAllProducts}</var>
+</assign>
+<msg timestamp="20240322 15:59:23.204" level="INFO">${listOfAllProducts} = [&lt;selenium.webdriver.remote.webelement.WebElement (session="5b96b0fcfd95b24b318cccd0b685655d", element="f.70DE22EC97FFDA1CAF103D590402F54F.d.8E05D29E06841763861CC75FE9585129.e.184")&gt;, &lt;selenium.webdri...</msg>
+<status status="PASS" starttime="20240322 15:59:23.187" endtime="20240322 15:59:23.204"></status>
+</kw>
+<kw name="${productName} IN [ @{listOfAllProducts} ]" type="for">
+<kw name="${productName} = &lt;selenium.webdriver.remote.webelement.WebElement (session=&quot;5b96b0fcfd95b24b318cccd0b685655d&quot;, element=&quot;f.70DE22EC97FFDA1CAF103D590402F54F.d.8E05D29E06841763861CC75FE9585129.e.184&quot;)&gt;" type="foritem">
+<kw name="Append To List" library="Collections">
+<doc>Adds ``values`` to the end of ``list``.</doc>
+<arguments>
+<arg>${listOfAllProductsInCart}</arg>
+<arg>${productName.text}</arg>
+</arguments>
+<status status="PASS" starttime="20240322 15:59:23.215" endtime="20240322 15:59:23.238"></status>
+</kw>
+<status status="PASS" starttime="20240322 15:59:23.215" endtime="20240322 15:59:23.238"></status>
+</kw>
+<kw name="${productName} = &lt;selenium.webdriver.remote.webelement.WebElement (session=&quot;5b96b0fcfd95b24b318cccd0b685655d&quot;, element=&quot;f.70DE22EC97FFDA1CAF103D590402F54F.d.8E05D29E06841763861CC75FE9585129.e.185&quot;)&gt;" type="foritem">
+<kw name="Append To List" library="Collections">
+<doc>Adds ``values`` to the end of ``list``.</doc>
+<arguments>
+<arg>${listOfAllProductsInCart}</arg>
+<arg>${productName.text}</arg>
+</arguments>
+<status status="PASS" starttime="20240322 15:59:23.239" endtime="20240322 15:59:23.267"></status>
+</kw>
+<status status="PASS" starttime="20240322 15:59:23.239" endtime="20240322 15:59:23.267"></status>
+</kw>
+<status status="PASS" starttime="20240322 15:59:23.204" endtime="20240322 15:59:23.267"></status>
+</kw>
+<msg timestamp="20240322 15:59:23.267" level="INFO">@{listOfAllProductsInCart} = [ Men Tshirt | Blue Top ]</msg>
+<status status="PASS" starttime="20240322 15:59:23.187" endtime="20240322 15:59:23.267"></status>
+</kw>
+<kw name="${productName} IN [ @{listOfAllProductsInCart} ]" type="for">
+<kw name="${productName} = Men Tshirt" type="foritem">
+<kw name="Get price of product in cart" library="cartPage">
+<arguments>
+<arg>${productName}</arg>
+</arguments>
+<assign>
+<var>${productPrice}</var>
+</assign>
+<kw name="Replace String" library="String">
+<doc>Replaces ``search_for`` in the given ``string`` with ``replace_with``.</doc>
+<arguments>
+<arg>${xpathPriceOfAProductInCart}</arg>
+<arg>nameOfTheProduct</arg>
+<arg>${productName}</arg>
+</arguments>
+<assign>
+<var>${xpathProductPrice}</var>
+</assign>
+<msg timestamp="20240322 15:59:23.267" level="INFO">${xpathProductPrice} = //a[text()="Men Tshirt"]/ancestor::td/following-sibling::td[contains(@class, "cart_price")]/p</msg>
+<status status="PASS" starttime="20240322 15:59:23.267" endtime="20240322 15:59:23.267"></status>
+</kw>
+<kw name="Get Text" library="SeleniumLibrary">
+<doc>Returns the text value of the element identified by ``locator``.</doc>
+<arguments>
+<arg>${xpathProductPrice}</arg>
+</arguments>
+<assign>
+<var>${productPrice}</var>
+</assign>
+<msg timestamp="20240322 15:59:23.300" level="INFO">${productPrice} = Rs. 400</msg>
+<status status="PASS" starttime="20240322 15:59:23.267" endtime="20240322 15:59:23.300"></status>
+</kw>
+<msg timestamp="20240322 15:59:23.300" level="INFO">${productPrice} = Rs. 400</msg>
+<status status="PASS" starttime="20240322 15:59:23.267" endtime="20240322 15:59:23.300"></status>
+</kw>
+<kw name="Fetch From Right" library="String">
+<doc>Returns contents of the ``string`` after the last occurrence of ``marker``.</doc>
+<arguments>
+<arg>${productPrice}</arg>
+<arg>${SPACE}</arg>
+</arguments>
+<assign>
+<var>${productPrice}</var>
+</assign>
+<msg timestamp="20240322 15:59:23.300" level="INFO">${productPrice} = 400</msg>
+<status status="PASS" starttime="20240322 15:59:23.300" endtime="20240322 15:59:23.300"></status>
+</kw>
+<kw name="Get quantity of product in cart" library="cartPage">
+<arguments>
+<arg>${productName}</arg>
+</arguments>
+<assign>
+<var>${productQuantity}</var>
+</assign>
+<kw name="Replace String" library="String">
+<doc>Replaces ``search_for`` in the given ``string`` with ``replace_with``.</doc>
+<arguments>
+<arg>${xpathQuantityOfTheProduct}</arg>
+<arg>nameOfTheProduct</arg>
+<arg>${productName}</arg>
+</arguments>
+<assign>
+<var>${xpathProductQuantity}</var>
+</assign>
+<msg timestamp="20240322 15:59:23.300" level="INFO">${xpathProductQuantity} = //a[text()="Men Tshirt"]/ancestor::td/following-sibling::td[contains(@class, "cart_quantity")]/button</msg>
+<status status="PASS" starttime="20240322 15:59:23.300" endtime="20240322 15:59:23.300"></status>
+</kw>
+<kw name="Get Text" library="SeleniumLibrary">
+<doc>Returns the text value of the element identified by ``locator``.</doc>
+<arguments>
+<arg>${xpathProductQuantity}</arg>
+</arguments>
+<assign>
+<var>${productQuantity}</var>
+</assign>
+<msg timestamp="20240322 15:59:23.318" level="INFO">${productQuantity} = 1</msg>
+<status status="PASS" starttime="20240322 15:59:23.300" endtime="20240322 15:59:23.318"></status>
+</kw>
+<msg timestamp="20240322 15:59:23.318" level="INFO">${productQuantity} = 1</msg>
+<status status="PASS" starttime="20240322 15:59:23.300" endtime="20240322 15:59:23.318"></status>
+</kw>
+<kw name="Evaluate" library="BuiltIn">
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<arguments>
+<arg>${productPrice} * ${productQuantity}</arg>
+</arguments>
+<assign>
+<var>${expectedProductTotalPrice}</var>
+</assign>
+<msg timestamp="20240322 15:59:23.333" level="INFO">${expectedProductTotalPrice} = 400</msg>
+<status status="PASS" starttime="20240322 15:59:23.332" endtime="20240322 15:59:23.333"></status>
+</kw>
+<kw name="Catenate" library="BuiltIn">
+<doc>Catenates the given items together and returns the resulted string.</doc>
+<arguments>
+<arg>SEPARATOR=${SPACE}</arg>
+<arg>Rs.</arg>
+<arg>${expectedProductTotalPrice}</arg>
+</arguments>
+<assign>
+<var>${expectedProductTotalPrice}</var>
+</assign>
+<msg timestamp="20240322 15:59:23.333" level="INFO">${expectedProductTotalPrice} = Rs. 400</msg>
+<status status="PASS" starttime="20240322 15:59:23.333" endtime="20240322 15:59:23.333"></status>
+</kw>
+<kw name=" Get total price of product in cart" library="cartPage">
+<arguments>
+<arg>${productName}</arg>
+</arguments>
+<assign>
+<var>${productTotalPrice}</var>
+</assign>
+<kw name="Replace String" library="String">
+<doc>Replaces ``search_for`` in the given ``string`` with ``replace_with``.</doc>
+<arguments>
+<arg>${xpathTotalOfAProductInCart}</arg>
+<arg>nameOfTheProduct</arg>
+<arg>${productName}</arg>
+</arguments>
+<assign>
+<var>${xpathTotalPriceOfProduct}</var>
+</assign>
+<msg timestamp="20240322 15:59:23.334" level="INFO">${xpathTotalPriceOfProduct} = //a[text()="Men Tshirt"]/ancestor::td/following-sibling::td[contains(@class, "cart_total")]/p</msg>
+<status status="PASS" starttime="20240322 15:59:23.334" endtime="20240322 15:59:23.334"></status>
+</kw>
+<kw name="Get Text" library="SeleniumLibrary">
+<doc>Returns the text value of the element identified by ``locator``.</doc>
+<arguments>
+<arg>${xpathTotalPriceOfProduct}</arg>
+</arguments>
+<assign>
+<var>${productTotalPrice}</var>
+</assign>
+<msg timestamp="20240322 15:59:23.366" level="INFO">${productTotalPrice} = Rs. 400</msg>
+<status status="PASS" starttime="20240322 15:59:23.335" endtime="20240322 15:59:23.366"></status>
+</kw>
+<msg timestamp="20240322 15:59:23.367" level="INFO">${productTotalPrice} = Rs. 400</msg>
+<status status="PASS" starttime="20240322 15:59:23.333" endtime="20240322 15:59:23.367"></status>
+</kw>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<arguments>
+<arg>${expectedProductTotalPrice}</arg>
+<arg>${productTotalPrice}</arg>
+</arguments>
+<status status="PASS" starttime="20240322 15:59:23.367" endtime="20240322 15:59:23.368"></status>
+</kw>
+<status status="PASS" starttime="20240322 15:59:23.267" endtime="20240322 15:59:23.368"></status>
+</kw>
+<kw name="${productName} = Blue Top" type="foritem">
+<kw name="Get price of product in cart" library="cartPage">
+<arguments>
+<arg>${productName}</arg>
+</arguments>
+<assign>
+<var>${productPrice}</var>
+</assign>
+<kw name="Replace String" library="String">
+<doc>Replaces ``search_for`` in the given ``string`` with ``replace_with``.</doc>
+<arguments>
+<arg>${xpathPriceOfAProductInCart}</arg>
+<arg>nameOfTheProduct</arg>
+<arg>${productName}</arg>
+</arguments>
+<assign>
+<var>${xpathProductPrice}</var>
+</assign>
+<msg timestamp="20240322 15:59:23.369" level="INFO">${xpathProductPrice} = //a[text()="Blue Top"]/ancestor::td/following-sibling::td[contains(@class, "cart_price")]/p</msg>
+<status status="PASS" starttime="20240322 15:59:23.369" endtime="20240322 15:59:23.369"></status>
+</kw>
+<kw name="Get Text" library="SeleniumLibrary">
+<doc>Returns the text value of the element identified by ``locator``.</doc>
+<arguments>
+<arg>${xpathProductPrice}</arg>
+</arguments>
+<assign>
+<var>${productPrice}</var>
+</assign>
+<msg timestamp="20240322 15:59:23.399" level="INFO">${productPrice} = Rs. 500</msg>
+<status status="PASS" starttime="20240322 15:59:23.369" endtime="20240322 15:59:23.399"></status>
+</kw>
+<msg timestamp="20240322 15:59:23.399" level="INFO">${productPrice} = Rs. 500</msg>
+<status status="PASS" starttime="20240322 15:59:23.368" endtime="20240322 15:59:23.399"></status>
+</kw>
+<kw name="Fetch From Right" library="String">
+<doc>Returns contents of the ``string`` after the last occurrence of ``marker``.</doc>
+<arguments>
+<arg>${productPrice}</arg>
+<arg>${SPACE}</arg>
+</arguments>
+<assign>
+<var>${productPrice}</var>
+</assign>
+<msg timestamp="20240322 15:59:23.399" level="INFO">${productPrice} = 500</msg>
+<status status="PASS" starttime="20240322 15:59:23.399" endtime="20240322 15:59:23.399"></status>
+</kw>
+<kw name="Get quantity of product in cart" library="cartPage">
+<arguments>
+<arg>${productName}</arg>
+</arguments>
+<assign>
+<var>${productQuantity}</var>
+</assign>
+<kw name="Replace String" library="String">
+<doc>Replaces ``search_for`` in the given ``string`` with ``replace_with``.</doc>
+<arguments>
+<arg>${xpathQuantityOfTheProduct}</arg>
+<arg>nameOfTheProduct</arg>
+<arg>${productName}</arg>
+</arguments>
+<assign>
+<var>${xpathProductQuantity}</var>
+</assign>
+<msg timestamp="20240322 15:59:23.399" level="INFO">${xpathProductQuantity} = //a[text()="Blue Top"]/ancestor::td/following-sibling::td[contains(@class, "cart_quantity")]/button</msg>
+<status status="PASS" starttime="20240322 15:59:23.399" endtime="20240322 15:59:23.399"></status>
+</kw>
+<kw name="Get Text" library="SeleniumLibrary">
+<doc>Returns the text value of the element identified by ``locator``.</doc>
+<arguments>
+<arg>${xpathProductQuantity}</arg>
+</arguments>
+<assign>
+<var>${productQuantity}</var>
+</assign>
+<msg timestamp="20240322 15:59:23.430" level="INFO">${productQuantity} = 1</msg>
+<status status="PASS" starttime="20240322 15:59:23.399" endtime="20240322 15:59:23.430"></status>
+</kw>
+<msg timestamp="20240322 15:59:23.430" level="INFO">${productQuantity} = 1</msg>
+<status status="PASS" starttime="20240322 15:59:23.399" endtime="20240322 15:59:23.430"></status>
+</kw>
+<kw name="Evaluate" library="BuiltIn">
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<arguments>
+<arg>${productPrice} * ${productQuantity}</arg>
+</arguments>
+<assign>
+<var>${expectedProductTotalPrice}</var>
+</assign>
+<msg timestamp="20240322 15:59:23.430" level="INFO">${expectedProductTotalPrice} = 500</msg>
+<status status="PASS" starttime="20240322 15:59:23.430" endtime="20240322 15:59:23.430"></status>
+</kw>
+<kw name="Catenate" library="BuiltIn">
+<doc>Catenates the given items together and returns the resulted string.</doc>
+<arguments>
+<arg>SEPARATOR=${SPACE}</arg>
+<arg>Rs.</arg>
+<arg>${expectedProductTotalPrice}</arg>
+</arguments>
+<assign>
+<var>${expectedProductTotalPrice}</var>
+</assign>
+<msg timestamp="20240322 15:59:23.430" level="INFO">${expectedProductTotalPrice} = Rs. 500</msg>
+<status status="PASS" starttime="20240322 15:59:23.430" endtime="20240322 15:59:23.430"></status>
+</kw>
+<kw name=" Get total price of product in cart" library="cartPage">
+<arguments>
+<arg>${productName}</arg>
+</arguments>
+<assign>
+<var>${productTotalPrice}</var>
+</assign>
+<kw name="Replace String" library="String">
+<doc>Replaces ``search_for`` in the given ``string`` with ``replace_with``.</doc>
+<arguments>
+<arg>${xpathTotalOfAProductInCart}</arg>
+<arg>nameOfTheProduct</arg>
+<arg>${productName}</arg>
+</arguments>
+<assign>
+<var>${xpathTotalPriceOfProduct}</var>
+</assign>
+<msg timestamp="20240322 15:59:23.430" level="INFO">${xpathTotalPriceOfProduct} = //a[text()="Blue Top"]/ancestor::td/following-sibling::td[contains(@class, "cart_total")]/p</msg>
+<status status="PASS" starttime="20240322 15:59:23.430" endtime="20240322 15:59:23.430"></status>
+</kw>
+<kw name="Get Text" library="SeleniumLibrary">
+<doc>Returns the text value of the element identified by ``locator``.</doc>
+<arguments>
+<arg>${xpathTotalPriceOfProduct}</arg>
+</arguments>
+<assign>
+<var>${productTotalPrice}</var>
+</assign>
+<msg timestamp="20240322 15:59:23.461" level="INFO">${productTotalPrice} = Rs. 500</msg>
+<status status="PASS" starttime="20240322 15:59:23.430" endtime="20240322 15:59:23.461"></status>
+</kw>
+<msg timestamp="20240322 15:59:23.461" level="INFO">${productTotalPrice} = Rs. 500</msg>
+<status status="PASS" starttime="20240322 15:59:23.430" endtime="20240322 15:59:23.461"></status>
+</kw>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<arguments>
+<arg>${expectedProductTotalPrice}</arg>
+<arg>${productTotalPrice}</arg>
+</arguments>
+<status status="PASS" starttime="20240322 15:59:23.461" endtime="20240322 15:59:23.461"></status>
+</kw>
+<status status="PASS" starttime="20240322 15:59:23.368" endtime="20240322 15:59:23.461"></status>
+</kw>
+<status status="PASS" starttime="20240322 15:59:23.267" endtime="20240322 15:59:23.461"></status>
+</kw>
+<status status="PASS" starttime="20240322 15:59:23.187" endtime="20240322 15:59:23.461"></status>
+</kw>
+<doc>We go to the e-commerce website: "http://automationexercise.com" and
+validate if the search bar is visible. At this point, we search for
+the product "Men Tshirt", validate if it is visible and add it to cart.
+Then a second product is chosen: "Blue Top" also validating if it is
+visible and adding it to cart. We go now to the cart page verifying
+if these both products are visible and validating the sum of their values.</doc>
+<tags>
+<tag>AutomationExercise_E2E</tag>
+</tags>
+<status status="PASS" starttime="20240322 15:59:15.177" endtime="20240322 15:59:23.461" critical="yes"></status>
+</test>
+<kw name="Close All Browsers" library="SeleniumLibrary" type="teardown">
+<doc>Closes all open browsers and resets the browser cache.</doc>
+<status status="PASS" starttime="20240322 15:59:23.461" endtime="20240322 15:59:25.822"></status>
+</kw>
+<doc>A test suite containing a test case related to the e-commerce website: "http://automationexercise.com"</doc>
+<status status="PASS" starttime="20240322 15:59:08.964" endtime="20240322 15:59:25.822"></status>
+</suite>
+<statistics>
+<total>
+<stat pass="1" fail="0">Critical Tests</stat>
+<stat pass="1" fail="0">All Tests</stat>
+</total>
+<tag>
+<stat pass="1" fail="0">AutomationExercise_E2E</stat>
+</tag>
+<suite>
+<stat pass="1" fail="0" id="s1" name="automationExercise">automationExercise</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>
